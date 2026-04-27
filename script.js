@@ -9,12 +9,13 @@ const STEP_1_WEBHOOK_URL = "https://hook.make.com/YOUR_STEP_1_WEBHOOK_URL";
 // You can also use the same webhook and route by "form_stage".
 const STEP_2_WEBHOOK_URL = "https://hook.make.com/YOUR_STEP_2_WEBHOOK_URL";
 
-// If testing locally before your webhook is ready, set this to true.
-// It will simulate a successful submission and generate a temporary Lead ID.
+// If testing before your webhook is ready, keep this as true.
+// Set to false when your Make.com webhook is connected.
 const DEMO_MODE = true;
 
 const menuToggle = document.querySelector("[data-menu-toggle]");
 const nav = document.querySelector("[data-nav]");
+const header = document.querySelector("[data-header]");
 
 if (menuToggle && nav) {
   menuToggle.addEventListener("click", () => {
@@ -30,6 +31,45 @@ if (menuToggle && nav) {
       menuToggle.setAttribute("aria-expanded", "false");
     });
   });
+}
+
+function updateHeaderState() {
+  if (!header) return;
+
+  if (window.scrollY > 12) {
+    header.classList.add("scrolled");
+  } else {
+    header.classList.remove("scrolled");
+  }
+}
+
+window.addEventListener("scroll", updateHeaderState, { passive: true });
+updateHeaderState();
+
+/* Scroll reveal animation */
+const revealElements = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.14,
+      rootMargin: "0px 0px -30px 0px"
+    }
+  );
+
+  revealElements.forEach((element) => {
+    revealObserver.observe(element);
+  });
+} else {
+  revealElements.forEach((element) => element.classList.add("visible"));
 }
 
 const leadForm = document.getElementById("leadForm");
