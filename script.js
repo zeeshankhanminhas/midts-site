@@ -54,8 +54,15 @@ if ("IntersectionObserver" in window) {
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
+          // Apply will-change just before the animation fires, not on page load
+          entry.target.style.willChange = "opacity, transform";
           entry.target.classList.add("visible");
           revealObserver.unobserve(entry.target);
+          // Clean up will-change once the transition completes
+          entry.target.addEventListener("transitionend", function cleanup() {
+            entry.target.style.willChange = "auto";
+            entry.target.removeEventListener("transitionend", cleanup);
+          });
         }
       });
     },
@@ -361,5 +368,86 @@ if (technicalForm) {
 
   spySections.forEach(function (section) {
     spyObserver.observe(section);
+  });
+})();
+
+/* ═══════════════════════════════════════════════════════
+   HERO ENTRANCE — staggered on DOMContentLoaded.
+   Each .hero-animate element enters 130ms after the last.
+   Analytics: extend here to track hero impression if needed.
+════════════════════════════════════════════════════════ */
+
+(function () {
+  const heroElements = document.querySelectorAll(".hero-animate");
+  if (!heroElements.length) return;
+
+  heroElements.forEach(function (el, i) {
+    el.style.transitionDelay = (i * 130) + "ms";
+  });
+
+  // Trigger on next frame so CSS transition fires correctly
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      heroElements.forEach(function (el) {
+        el.classList.add("hero-visible");
+      });
+      // Clean up transition delays once entrance is complete
+      var last = heroElements[heroElements.length - 1];
+      last.addEventListener("transitionend", function cleanup() {
+        heroElements.forEach(function (el) {
+          el.style.transitionDelay = "";
+        });
+        last.removeEventListener("transitionend", cleanup);
+      });
+    });
+  });
+})();
+
+/* ═══════════════════════════════════════════════════════
+   FAQ ANIMATION — smooth height transition on open/close.
+   Native <details> snaps without this.
+════════════════════════════════════════════════════════ */
+
+(function () {
+  var faqItems = document.querySelectorAll(".faq-item");
+  if (!faqItems.length) return;
+
+  faqItems.forEach(function (item) {
+    var summary = item.querySelector("summary");
+    var answer = item.querySelector(".faq-answer");
+    if (!summary || !answer) return;
+
+    summary.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      if (item.open) {
+        // Closing
+        answer.style.height = answer.scrollHeight + "px";
+        answer.style.overflow = "hidden";
+        requestAnimationFrame(function () {
+          answer.style.height = "0";
+        });
+        answer.addEventListener("transitionend", function done() {
+          item.removeAttribute("open");
+          answer.style.height = "";
+          answer.style.overflow = "";
+          answer.removeEventListener("transitionend", done);
+        });
+      } else {
+        // Opening
+        item.setAttribute("open", "");
+        var target = answer.scrollHeight;
+        answer.style.height = "0";
+        answer.style.overflow = "hidden";
+        requestAnimationFrame(function () {
+          answer.style.height = target + "px";
+        });
+        answer.addEventListener("transitionend", function done() {
+          answer.style.height = "";
+          answer.style.overflow = "";
+          answer.removeEventListener("transitionend", done);
+        });
+      }
+    });
   });
 })();

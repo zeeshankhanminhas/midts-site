@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MIDTS | CAD/CAM Overflow Support for Engineering Teams</title>
   <meta name="description" content="MIDTS provides UK-led CAD/CAM overflow support for engineering and manufacturing teams. Quote-led delivery, structured intake, dedicated production support." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 
@@ -36,21 +39,21 @@
     <!-- HERO -->
     <section class="hero section">
       <div class="container hero-grid">
-        <div class="hero-copy reveal">
-          <p class="eyebrow">UK-led CAD/CAM overflow support</p>
-          <h1>Your design queue, moving again.</h1>
-          <p class="hero-text">
+        <div class="hero-copy">
+          <p class="eyebrow hero-animate">UK-led CAD/CAM overflow support</p>
+          <h1 class="hero-animate">Your design queue, moving again.</h1>
+          <p class="hero-text hero-animate">
             Send defined drawing, modelling, or CAM-prep work. We review scope, quote the work, and deliver checked files — without adding to your headcount or your internal queue.
           </p>
 
-          <div class="hero-proof">
+          <div class="hero-proof hero-animate">
             <span>Quote before work starts</span>
             <span>No commitment at submission</span>
             <span>NDA available on request</span>
             <span>Initial review within 1 business day</span>
           </div>
 
-          <div class="hero-actions">
+          <div class="hero-actions hero-animate">
             <a href="#intake" class="button button-primary">Send requirement for review</a>
             <a href="#process" class="button button-secondary">View process</a>
           </div>
@@ -178,14 +181,12 @@
       </div>
     </section>
 
-    <!-- POSITIONING -->
-    <section class="section section-muted reveal">
-      <div class="container split">
-        <div>
-          <p class="eyebrow">Positioning</p>
-          <h2>We support your team. We do not replace it.</h2>
-        </div>
-        <div class="copy-stack">
+    <!-- POSITIONING — centred statement layout, breaks back-to-back split pattern -->
+    <section class="section section-muted positioning-section reveal">
+      <div class="container">
+        <p class="eyebrow">Positioning</p>
+        <h2 class="positioning-statement">We support your team.<br>We do not replace it.</h2>
+        <div class="positioning-copy">
           <p>MIDTS acts as an overflow design bench for engineering and manufacturing teams. You retain full ownership of your client relationship, technical direction, and production priorities.</p>
           <p>We move defined tasks through a structured intake, quote, production, and review process &#x2014; and hand back checked files ready for your use.</p>
         </div>
@@ -203,7 +204,7 @@
         </div>
 
         <div class="card-grid">
-          <article class="card reveal reveal-delay-1">
+          <article class="card card-featured reveal reveal-delay-1">
             <h3>2D technical drawings</h3>
             <p>Manufacturing drawings, marked-up revisions, drawing packs, and documentation to production standard.</p>
           </article>
@@ -375,7 +376,7 @@
         </div>
 
         <div class="proof-stats">
-          <div class="proof-stat reveal reveal-delay-1">
+          <div class="proof-stat proof-stat-primary reveal reveal-delay-1">
             <strong>48 hr</strong>
             <span>Typical initial review turnaround for a submitted requirement</span>
           </div>
