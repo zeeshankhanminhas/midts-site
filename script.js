@@ -52,29 +52,39 @@ function resolveBrandLogos() {
   if (!logoNodes.length) return;
 
   const candidates = [
+    "assets/midts-logo.svg",
     "assets/midts-logo.png",
     "assets/midts-logo.webp",
     "assets/midts-logo.jpg",
-    "assets/logo.png",
     "assets/logo.svg",
-    "assets/midts-logo.svg"
+    "assets/logo.png"
   ];
 
-  const probe = new Image();
   let index = 0;
 
-  probe.onload = () => {
-    logoNodes.forEach((img) => { img.src = candidates[index]; });
+  const applyCandidate = () => {
+    const src = candidates[index];
+    logoNodes.forEach((img) => {
+      const fallback = img.nextElementSibling;
+      img.style.display = "block";
+      img.src = src;
+      img.onerror = () => {
+        index += 1;
+        if (index < candidates.length) {
+          applyCandidate();
+        } else {
+          img.style.display = "none";
+          if (fallback) fallback.style.display = "inline";
+        }
+      };
+      img.onload = () => {
+        img.style.display = "block";
+        if (fallback) fallback.style.display = "none";
+      };
+    });
   };
 
-  probe.onerror = () => {
-    index += 1;
-    if (index < candidates.length) {
-      probe.src = candidates[index];
-    }
-  };
-
-  probe.src = candidates[index];
+  applyCandidate();
 }
 
 resolveBrandLogos();
