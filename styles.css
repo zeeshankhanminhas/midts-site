@@ -1150,6 +1150,19 @@ small {
   color: var(--muted-light);
 }
 
+
+.site-header .brand {
+  font-size: 1.18rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+}
+
+.site-header .brand-sub {
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  font-weight: 500;
+}
+
 /* Nav scroll-spy active state */
 
 .site-nav a.nav-active {
