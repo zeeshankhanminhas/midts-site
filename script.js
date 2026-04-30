@@ -50,6 +50,7 @@ updateHeaderState();
 function resolveBrandLogos() {
   const logoNodes = document.querySelectorAll(".brand-logo");
   if (!logoNodes.length) return;
+  if (Array.from(logoNodes).every((img) => img.src.startsWith("data:image/svg+xml"))) return;
 
   const candidates = [
     "assets/midts-logo.svg",
