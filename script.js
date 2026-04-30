@@ -46,6 +46,39 @@ function updateHeaderState() {
 window.addEventListener("scroll", updateHeaderState, { passive: true });
 updateHeaderState();
 
+
+function resolveBrandLogos() {
+  const logoNodes = document.querySelectorAll(".brand-logo");
+  if (!logoNodes.length) return;
+
+  const candidates = [
+    "assets/midts-logo.png",
+    "assets/midts-logo.webp",
+    "assets/midts-logo.jpg",
+    "assets/logo.png",
+    "assets/logo.svg",
+    "assets/midts-logo.svg"
+  ];
+
+  const probe = new Image();
+  let index = 0;
+
+  probe.onload = () => {
+    logoNodes.forEach((img) => { img.src = candidates[index]; });
+  };
+
+  probe.onerror = () => {
+    index += 1;
+    if (index < candidates.length) {
+      probe.src = candidates[index];
+    }
+  };
+
+  probe.src = candidates[index];
+}
+
+resolveBrandLogos();
+
 /* Scroll reveal animation */
 const revealElements = document.querySelectorAll(".reveal");
 
