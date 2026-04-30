@@ -3,6 +3,7 @@
     <style>
       .mark{fill:none;stroke:#111;stroke-width:12;stroke-linecap:square;stroke-linejoin:miter}
       .title{font:700 88px 'IBM Plex Sans',Arial,sans-serif;letter-spacing:6px;fill:#111}
+      .tag{font:600 24px 'IBM Plex Sans',Arial,sans-serif;letter-spacing:4px;fill:#575757}
           </style>
   </defs>
   <g transform="translate(16,18)">
@@ -13,4 +14,5 @@
   </g>
   <line x1="155" y1="12" x2="155" y2="166" stroke="#c9c9c9" stroke-width="2"/>
   <text class="title" x="196" y="108">MIDTS</text>
+  <text class="tag" x="198" y="154">ENGINEERING OVERFLOW. DELIVERED.</text>
 </svg>
