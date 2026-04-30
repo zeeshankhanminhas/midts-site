@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 180" role="img" aria-label="MIDTS Engineering Overflow Delivered">
+  <defs>
+    <style>
+      .mark{fill:none;stroke:#111;stroke-width:12;stroke-linecap:square;stroke-linejoin:miter}
+      .title{font:700 88px 'IBM Plex Sans',Arial,sans-serif;letter-spacing:6px;fill:#111}
+          </style>
+  </defs>
+  <g transform="translate(16,18)">
+    <path class="mark" d="M14 14h88v64"/>
+    <path class="mark" d="M14 130V84"/>
+    <path class="mark" d="M46 130V84"/>
+    <path class="mark" d="M102 84v60H46"/>
+  </g>
+  <line x1="155" y1="12" x2="155" y2="166" stroke="#c9c9c9" stroke-width="2"/>
+  <text class="title" x="196" y="108">MIDTS</text>
+</svg>
