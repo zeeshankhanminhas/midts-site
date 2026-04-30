@@ -1133,6 +1133,7 @@ small {
    file note block. All existing styles preserved above.
 ════════════════════════════════════════════════════════ */
 
+/* Brand asset path: assets/midts-logo.png */
 /* Brand wordmark with sub-line */
 
 .brand {
@@ -1600,5 +1601,17 @@ h2 {
   .positioning-copy {
     text-align: left;
     margin: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .brand-logo {
+    width: min(210px, 52vw);
+    max-height: 36px;
+  }
+
+  .brand-fallback {
+    font-size: 0.98rem;
+    letter-spacing: 0.18em;
   }
 }
